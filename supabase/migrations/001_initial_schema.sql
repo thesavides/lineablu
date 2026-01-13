@@ -1,9 +1,9 @@
 -- Enable UUID extension
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA extensions;
 
 -- Create assessments table
 CREATE TABLE public.assessments (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
 
@@ -53,7 +53,7 @@ CREATE INDEX idx_assessments_utm_campaign ON public.assessments(utm_campaign);
 
 -- Create email_sequences table
 CREATE TABLE public.email_sequences (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
 
     assessment_id UUID REFERENCES public.assessments(id),
@@ -71,7 +71,7 @@ CREATE TABLE public.email_sequences (
 
 -- Create analytics_events table
 CREATE TABLE public.analytics_events (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
 
     assessment_id UUID REFERENCES public.assessments(id),
