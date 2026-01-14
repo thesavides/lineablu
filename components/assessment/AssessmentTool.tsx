@@ -55,6 +55,16 @@ export default function AssessmentTool() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
 
+  // Check URL for persona parameter and skip directly to questions
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const personaParam = params.get('persona');
+    if (personaParam) {
+      setSelectedPersona(personaParam);
+      setCurrentStep('q1'); // Skip welcome and persona selection, go straight to questions
+    }
+  }, []);
+
   const handleSubmitReport = async () => {
     if (!email || !firstName || !lastName) {
       alert('Please fill in all required fields');
