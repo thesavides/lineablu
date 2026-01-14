@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Match Little Bo Peep pattern - use empty string fallback for build-time
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+// Match Little Bo Peep pattern - use placeholder values for build-time
+// Real values injected at runtime via environment variables
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNjQ1MTkyODAwLCJleHAiOjE5NjA3Njg4MDB9.placeholder';
 
 // Client-side Supabase client (uses anon key)
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
