@@ -4,8 +4,48 @@ import React, { useState } from 'react';
 import { ChevronRight, CheckCircle, TrendingUp } from 'lucide-react';
 import { questions, calculateScores, getTierConfig, formatCurrency, type Scores } from '@/utils/scoring-algorithm';
 
+interface Persona {
+  id: string;
+  title: string;
+  icon: string;
+  painPoint: string;
+  message: string;
+}
+
+const personas: Persona[] = [
+  {
+    id: 'cfo',
+    title: 'Chief Financial Officer',
+    icon: '💰',
+    painPoint: 'Hidden contract costs, budget surprises, uncontrolled outside counsel spend',
+    message: 'Find out what\'s costing you before it hits the P&L'
+  },
+  {
+    id: 'general-counsel',
+    title: 'General Counsel',
+    icon: '⚖️',
+    painPoint: 'Overload, capacity constraints, stakeholder frustration',
+    message: 'Stop drowning in tactical work'
+  },
+  {
+    id: 'ceo',
+    title: 'CEO / Founder',
+    icon: '🚀',
+    painPoint: 'Legal bottlenecks, expansion uncertainty, deal delays',
+    message: 'Scale without legal surprises'
+  },
+  {
+    id: 'operations',
+    title: 'Operations Leader',
+    icon: '⚙️',
+    painPoint: 'Deal velocity, legal friction, process inefficiency',
+    message: 'Make legal a speed advantage, not a speed bump'
+  }
+];
+
 export default function AssessmentTool() {
   const [currentStep, setCurrentStep] = useState('welcome');
+  const [selectedPersona, setSelectedPersona] = useState<string>('');
   const [answers, setAnswers] = useState<any>({});
   const [scores, setScores] = useState<Scores | null>(null);
   const [email, setEmail] = useState('');
@@ -35,7 +75,7 @@ export default function AssessmentTool() {
           firstName,
           lastName,
           companyName,
-          persona: 'general',
+          persona: selectedPersona || 'general',
         }),
       });
 
@@ -143,12 +183,70 @@ export default function AssessmentTool() {
           </div>
 
           <button
-            onClick={() => setCurrentStep('q1')}
+            onClick={() => setCurrentStep('persona-selection')}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors flex items-center justify-center group"
           >
             Start Assessment
             <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Persona Selection Screen
+  if (currentStep === 'persona-selection') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div className="max-w-4xl w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Which best describes your role?
+            </h2>
+            <p className="text-lg text-gray-600">
+              We'll tailor your assessment to focus on the opportunities most relevant to you
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {personas.map((persona) => (
+              <button
+                key={persona.id}
+                onClick={() => {
+                  setSelectedPersona(persona.id);
+                  setCurrentStep('q1');
+                }}
+                className="text-left p-6 rounded-xl border-2 border-gray-200 hover:border-blue-600 hover:bg-blue-50 transition-all group"
+              >
+                <div className="flex items-start mb-3">
+                  <span className="text-4xl mr-3">{persona.icon}</span>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600">
+                      {persona.title}
+                    </h3>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 mb-3">
+                  <strong>Key Challenge:</strong> {persona.painPoint}
+                </p>
+                <p className="text-sm font-medium text-blue-600 group-hover:text-blue-700">
+                  {persona.message} →
+                </p>
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <button
+              onClick={() => {
+                setSelectedPersona('general');
+                setCurrentStep('q1');
+              }}
+              className="text-gray-600 hover:text-gray-900 underline text-sm"
+            >
+              Skip - I'll answer as a general user
+            </button>
+          </div>
         </div>
       </div>
     );
