@@ -17,29 +17,29 @@ const personas: Persona[] = [
     id: 'cfo',
     title: 'Chief Financial Officer',
     icon: '💰',
-    painPoint: 'Hidden contract costs, budget surprises, uncontrolled outside counsel spend',
-    message: 'Find out what\'s costing you before it hits the P&L'
+    painPoint: 'Unlock contract value, capture budget savings, optimize legal spend',
+    message: 'Discover what value is waiting before next quarter'
   },
   {
     id: 'general-counsel',
     title: 'General Counsel',
     icon: '⚖️',
-    painPoint: 'Overload, capacity constraints, stakeholder frustration',
-    message: 'Stop drowning in tactical work'
+    painPoint: 'Scale legal capacity, elevate strategic impact, maximize team value',
+    message: 'Transform from tactical execution to strategic driver'
   },
   {
     id: 'ceo',
     title: 'CEO / Founder',
     icon: '🚀',
-    painPoint: 'Legal bottlenecks, expansion uncertainty, deal delays',
-    message: 'Scale without legal surprises'
+    painPoint: 'Accelerate deal velocity, enable expansion, unlock growth potential',
+    message: 'Make legal your competitive advantage'
   },
   {
     id: 'operations',
     title: 'Operations Leader',
     icon: '⚙️',
-    painPoint: 'Deal velocity, legal friction, process inefficiency',
-    message: 'Make legal a speed advantage, not a speed bump'
+    painPoint: 'Speed up deals, optimize processes, drive efficiency gains',
+    message: 'Turn legal into your velocity multiplier'
   }
 ];
 
@@ -227,7 +227,7 @@ export default function AssessmentTool() {
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">
-                  <strong>Key Challenge:</strong> {persona.painPoint}
+                  <strong>Value Opportunity:</strong> {persona.painPoint}
                 </p>
                 <p className="text-sm font-medium text-blue-600 group-hover:text-blue-700">
                   {persona.message} →
