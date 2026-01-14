@@ -13,6 +13,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=20.9.0",
+    "npm": ">=10.0.0"
+  },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",
     "@supabase/auth-helpers-nextjs": "^0.15.0",
