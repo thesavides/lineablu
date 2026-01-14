@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronRight, CheckCircle } from 'lucide-react';
-import { questions, calculateScores, getTierConfig, type Scores } from '@/utils/scoring-algorithm';
+import { ChevronRight, CheckCircle, TrendingUp } from 'lucide-react';
+import { questions, calculateScores, getTierConfig, formatCurrency, type Scores } from '@/utils/scoring-algorithm';
 
 export default function AssessmentTool() {
   const [currentStep, setCurrentStep] = useState('welcome');
@@ -111,19 +111,19 @@ export default function AssessmentTool() {
         <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12">
           <div className="text-center mb-8">
             <div className="inline-block bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6">
-              LineaBlu Legal Impact Score™
+              LineaBlu Legal Value Score™
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Is your legal function slowing you down or speeding you up?
+              How much value is your legal function leaving on the table?
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Most businesses don't know what's buried in their contracts until it costs them.
+              Most businesses are sitting on €200K-€500K in uncaptured legal value. Find out how much you could unlock in 5 minutes.
             </p>
           </div>
 
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-6 mb-8 rounded-r-lg">
-            <p className="text-gray-700 text-lg">
-              Answer 8 questions. Get your score. See exactly where your legal function creates value — or leaves it on the table.
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-6 mb-8 rounded-r-lg">
+            <p className="text-gray-700 text-lg font-medium">
+              💰 Answer 8 questions. Discover your value potential. See exactly how much opportunity exists in your legal function.
             </p>
           </div>
 
@@ -210,26 +210,68 @@ export default function AssessmentTool() {
         <div className="max-w-3xl w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Your Legal Impact Score
+              Your Legal Value Score
             </h2>
-            <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white mb-4">
-              <span className="text-5xl font-bold">{scores.total}</span>
+
+            {/* VALUE POTENTIAL - LARGE AND PROMINENT */}
+            <div className="mb-6">
+              <div className="inline-flex flex-col items-center justify-center bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl p-8 mb-4">
+                <div className="text-sm font-medium mb-2 opacity-90">Annual Value Potential</div>
+                <div className="text-5xl md:text-6xl font-bold mb-2">{formatCurrency(scores.valuePotential.total)}</div>
+                <div className="text-sm opacity-90">identified in untapped opportunities</div>
+              </div>
+            </div>
+
+            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white mb-4">
+              <span className="text-4xl font-bold">{scores.total}</span>
             </div>
             <div className={`inline-block px-6 py-2 rounded-full text-white font-semibold bg-${tierConfig.color}-600`}>
               {tierConfig.title}
             </div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg mb-8">
-            <p className="text-lg text-gray-700">{tierConfig.message}</p>
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-6 rounded-r-lg mb-8">
+            <p className="text-lg text-gray-700 font-medium">{tierConfig.message}</p>
           </div>
 
           <div className="mb-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Score Breakdown</h3>
-            <ScoreGauge score={scores.breakdown.contract} label="Contract Management" />
-            <ScoreGauge score={scores.breakdown.risk} label="Risk & Compliance" />
-            <ScoreGauge score={scores.breakdown.efficiency} label="Operational Efficiency" />
-            <ScoreGauge score={scores.breakdown.strategic} label="Strategic Alignment" />
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <TrendingUp className="w-6 h-6 mr-2 text-green-600" />
+              Value Opportunity Breakdown
+            </h3>
+            <div className="space-y-4">
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-semibold text-gray-900">💎 Contract Value Opportunity</span>
+                  <span className="text-2xl font-bold text-green-600">{formatCurrency(scores.valuePotential.contract)}</span>
+                </div>
+                <ScoreGauge score={scores.breakdown.contract_opportunity} label="" />
+              </div>
+
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-semibold text-gray-900">🚀 Growth Enablement Opportunity</span>
+                  <span className="text-2xl font-bold text-green-600">{formatCurrency(scores.valuePotential.growth)}</span>
+                </div>
+                <ScoreGauge score={scores.breakdown.growth_enablement} label="" />
+              </div>
+
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-semibold text-gray-900">💰 Cost Optimization Opportunity</span>
+                  <span className="text-2xl font-bold text-green-600">{formatCurrency(scores.valuePotential.cost)}</span>
+                </div>
+                <ScoreGauge score={scores.breakdown.cost_opportunity} label="" />
+              </div>
+
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-semibold text-gray-900">📈 Strategic Value Opportunity</span>
+                  <span className="text-2xl font-bold text-green-600">{formatCurrency(scores.valuePotential.strategic)}</span>
+                </div>
+                <ScoreGauge score={scores.breakdown.strategic_value} label="" />
+              </div>
+            </div>
           </div>
 
           <div className="border-t pt-8">
