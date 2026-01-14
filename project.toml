@@ -1,5 +1,0 @@
-[[build.buildpacks]]
-id = "google.nodejs.runtime"
-
-[[build.buildpacks]]
-id = "google.nodejs.npm"
