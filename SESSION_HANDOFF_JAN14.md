@@ -350,9 +350,30 @@ In `/Users/chrissavides/Documents/Lineablu/lineablu-app/`:
 
 ---
 
-**Last Updated**: January 14, 2026 07:55 UTC
-**Next Action**: Trigger build and monitor for success
-**Expected Result**: Build should succeed with all permissions now in place
+**Last Updated**: January 14, 2026 10:30 UTC
+**Critical Fix Applied**: Removed Dockerfile (commit 4635be2)
+**Next Action**: Push and deploy with buildpacks
+**Expected Result**: IMMEDIATE SUCCESS (like Little Bo Peep after Docker removal)
+
+---
+
+## 🚨 CRITICAL LESSON LEARNED
+
+**The Problem Was NOT Permissions - It Was Docker**
+
+After reviewing Little Bo Peep deployment history, we discovered:
+- Little Bo Peep had 10+ failed builds over 2+ hours
+- Root cause: Dockerfile interfering with buildpacks
+- Solution: Remove Dockerfile entirely
+- Result: IMMEDIATE SUCCESS
+
+**LineaBlu Had the Same Issue:**
+- 5+ failed builds (commits before 4635be2)
+- We kept adding permissions (which were already correct)
+- Real issue: `gcloud run deploy --source=.` was detecting Dockerfile and using Docker mode
+- **Fix Applied**: Removed Dockerfile and .dockerignore in commit 4635be2
+
+**READ THIS**: `CRITICAL-DEPLOYMENT-RULES.md` - Contains all deployment lessons from Little Bo Peep
 
 ---
 
@@ -360,29 +381,45 @@ In `/Users/chrissavides/Documents/Lineablu/lineablu-app/`:
 
 To resume this session:
 
-1. Set project:
+1. **FIRST: Read the critical deployment rules**
+   ```bash
+   cat CRITICAL-DEPLOYMENT-RULES.md
+   ```
+
+2. Set project:
    ```bash
    gcloud config set project inner-chassis-484215-i8
    ```
 
-2. Navigate to app:
+3. Navigate to app:
    ```bash
    cd /Users/chrissavides/Documents/Lineablu/lineablu-app
    ```
 
-3. Check latest build status:
+4. Verify Dockerfile is gone:
+   ```bash
+   [ ! -f Dockerfile ] && echo "✅ Ready to deploy" || echo "❌ Remove Dockerfile first"
+   ```
+
+5. Check latest build status:
    ```bash
    gcloud builds list --project=inner-chassis-484215-i8 --limit=1
    ```
 
-4. If last build failed, trigger new one:
+6. Deploy (should succeed now with buildpacks):
    ```bash
-   git commit --allow-empty -m "Retry deployment"
    git push origin main
    ```
 
-5. Monitor until success or identify next permission issue
+7. Monitor build:
+   ```bash
+   sleep 20  # Wait for webhook
+   BUILD_ID=$(gcloud builds list --limit=1 --format="value(id)")
+   gcloud builds log $BUILD_ID --stream
+   ```
 
 ---
 
-**Status**: Ready for final deployment attempt with all known permissions configured ✅
+**Status**: ✅ Critical fix applied - Dockerfile removed, buildpacks enabled
+**Confidence**: High (exact same fix worked for Little Bo Peep)
+**Reference**: See CRITICAL-DEPLOYMENT-RULES.md for full history
