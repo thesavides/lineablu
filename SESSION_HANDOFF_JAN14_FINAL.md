@@ -341,9 +341,9 @@ When resuming this project:
 
 ### Live Service
 - **URL**: https://lineablu-legal-impact-score-816746455484.us-central1.run.app
-- **Latest Revision**: lineablu-legal-impact-score-00008-xzj
+- **Latest Revision**: lineablu-legal-impact-score-00012-cdw
 - **Status**: SERVING 100% TRAFFIC
-- **Last Deploy**: January 14, 2026 13:23 UTC
+- **Last Deploy**: January 14, 2026 13:34 UTC
 
 ### Phase 1: Deployment Fixes (COMPLETED)
 ✅ Removed Dockerfile completely
@@ -386,6 +386,8 @@ When resuming this project:
 
 ### Complete Feature Set
 ✅ Combined landing page with hero section + integrated persona selection
+✅ Direct persona-to-questions flow (no duplicate selection)
+✅ URL parameter detection for seamless persona routing
 ✅ 8-question opportunity-based assessment
 ✅ Value potential calculations showing €200K-€500K opportunities
 ✅ Results screen with prominent € value display
@@ -407,6 +409,7 @@ When resuming this project:
 | 00005 | Jan 14 | SUCCESS | Reframing + personas added |
 | 00006 | Jan 14 | SUCCESS | Combined landing page |
 | 00008 | Jan 14 | SUCCESS | Opportunity-focused messaging |
+| 00012 | Jan 14 | SUCCESS | Fixed duplicate persona selection |
 
 ---
 
