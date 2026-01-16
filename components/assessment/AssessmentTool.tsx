@@ -358,13 +358,7 @@ export default function AssessmentTool() {
             </div>
             <button
               onClick={() => {
-                setCurrentStep('welcome');
-                setAnswers({});
-                setScores(null);
-                setEmail('');
-                setFirstName('');
-                setLastName('');
-                setCompanyName('');
+                window.location.href = '/';
               }}
               className="text-gray-600 hover:text-gray-800 flex items-center gap-2"
             >
