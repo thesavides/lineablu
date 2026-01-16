@@ -461,6 +461,35 @@ export default function AssessmentTool() {
             </div>
           </div>
 
+          {/* CTA Section */}
+          <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl shadow-lg p-8 mb-6 text-white">
+            <h2 className="text-3xl font-bold text-center mb-4">
+              Ready to unlock this growth potential?
+            </h2>
+            <p className="text-blue-100 text-center mb-8 leading-relaxed">
+              Book your 20-minute insights call now. We'll send you a prep document beforehand so we can dive straight into your specific situation.
+            </p>
+
+            {/* Primary CTA */}
+            <button
+              onClick={handleBookCall}
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl mb-4 flex items-center justify-center gap-3 transition-colors"
+            >
+              <Calendar size={24} />
+              <span className="text-lg">Book Your Insights Call</span>
+              <span>→</span>
+            </button>
+
+            {/* LinkedIn Share */}
+            <button
+              onClick={handleLinkedInShare}
+              className="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl flex items-center justify-center gap-3 border border-blue-500 transition-colors"
+            >
+              <Share2 size={18} />
+              <span>Share on LinkedIn</span>
+            </button>
+          </div>
+
           {/* What We'll Discuss Section */}
           <div className="bg-white rounded-2xl shadow-sm p-8 mb-6 border-2 border-blue-100">
             <div className="flex items-center gap-3 mb-6">
@@ -507,35 +536,6 @@ export default function AssessmentTool() {
                 <strong>This isn't a sales call.</strong> We'll share specific insights from 100+ similar assessments and give you actionable next steps—whether you work with us or not.
               </p>
             </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl shadow-lg p-8 mb-6 text-white">
-            <h2 className="text-3xl font-bold text-center mb-4">
-              Ready to unlock this growth potential?
-            </h2>
-            <p className="text-blue-100 text-center mb-8 leading-relaxed">
-              Book your 20-minute insights call now. We'll send you a prep document beforehand so we can dive straight into your specific situation.
-            </p>
-
-            {/* Primary CTA */}
-            <button
-              onClick={handleBookCall}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl mb-4 flex items-center justify-center gap-3 transition-colors"
-            >
-              <Calendar size={24} />
-              <span className="text-lg">Book Your Insights Call</span>
-              <span>→</span>
-            </button>
-
-            {/* LinkedIn Share */}
-            <button
-              onClick={handleLinkedInShare}
-              className="w-full bg-blue-700 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl flex items-center justify-center gap-3 border border-blue-500 transition-colors"
-            >
-              <Share2 size={18} />
-              <span>Share on LinkedIn</span>
-            </button>
           </div>
 
           {/* Why LineaBlu Banner - Persona Specific */}
