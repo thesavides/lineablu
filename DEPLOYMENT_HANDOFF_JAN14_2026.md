@@ -1,6 +1,6 @@
 # LineaBlu Legal Value Score - Deployment Handoff
-**Date**: January 14, 2026
-**Session**: Complete Reframing + Persona Implementation
+**Date**: January 16, 2026 (Updated)
+**Session**: Complete Reframing + Persona Implementation + Percentage-Based Scoring + Visual Redesign
 **Status**: ✅ DEPLOYED & LIVE
 **URL**: https://lineablu-legal-impact-score-816746455484.us-central1.run.app
 
@@ -34,7 +34,7 @@
 - ✅ Updated all 8 questions with opportunity-focused language
 - ✅ Changed category names:
   - `contract/risk/efficiency/strategic` → `contract_opportunity/growth_enablement/cost_opportunity/strategic_value`
-- ✅ Added value potential calculations showing €X amounts
+- ✅ Added value potential calculations
 - ✅ Updated tier names:
   - "At Risk" → "Significant Opportunity"
   - "Exposed" → "Transformational Potential"
@@ -44,10 +44,9 @@
 **UI/UX Updates**:
 - ✅ Rebranded everywhere: "Legal Impact Score™" → "Legal Value Score™"
 - ✅ Welcome screen: value discovery messaging instead of fear-based
-- ✅ Results screen: **PROMINENT € value display** (e.g., "€475K Annual Value Potential")
 - ✅ Updated homepage copy and metadata
 - ✅ Removed ALL fear/risk language
-- ✅ Added value breakdown by category with € amounts
+- ✅ Added value breakdown by category
 
 ### Phase 3: Persona Selection (Campaign Strategy Implementation)
 
@@ -55,23 +54,23 @@
 
 1. **Chief Financial Officer** (30% budget allocation)
    - Icon: 💰
-   - Pain Point: Hidden contract costs, budget surprises, uncontrolled outside counsel spend
-   - Message: "Find out what's costing you before it hits the P&L"
+   - Pain Point: Unlock contract value, capture budget savings, optimize legal spend
+   - Message: "Discover what value is waiting before next quarter"
 
 2. **General Counsel** (35% budget allocation)
    - Icon: ⚖️
-   - Pain Point: Overload, capacity constraints, stakeholder frustration
-   - Message: "Stop drowning in tactical work"
+   - Pain Point: Scale legal capacity, elevate strategic impact, maximize team value
+   - Message: "Transform from tactical execution to strategic driver"
 
 3. **CEO / Founder** (25% budget allocation)
    - Icon: 🚀
-   - Pain Point: Legal bottlenecks, expansion uncertainty, deal delays
-   - Message: "Scale without legal surprises"
+   - Pain Point: Accelerate deal velocity, enable expansion, unlock growth potential
+   - Message: "Make legal your competitive advantage"
 
 4. **Operations Leader** (10% budget allocation)
    - Icon: ⚙️
-   - Pain Point: Deal velocity, legal friction, process inefficiency
-   - Message: "Make legal a speed advantage, not a speed bump"
+   - Pain Point: Speed up deals, optimize processes, drive efficiency gains
+   - Message: "Turn legal into your velocity multiplier"
 
 **Features**:
 - Persona selection screen after welcome
@@ -79,6 +78,47 @@
 - Persona tracked and saved with each assessment
 - Skip option for general users
 - Personas enable persona-targeted LinkedIn campaign tracking
+
+### Phase 4: Percentage-Based Scoring Redesign (January 16, 2026)
+
+**Changed from € Currency to Percentage Opportunity Scoring**:
+
+**Why the Change**:
+- Currency amounts felt like sales projections, not credible assessments
+- Percentages position as diagnostic tool, more consultative
+- Better suited for early-stage prospect engagement
+- Aligns with "opportunity score" framing
+
+**Visual Redesign**:
+- ✅ Circular progress ring (192px) with orange-blue gradient
+- ✅ Large percentage display (e.g., "43% opportunity")
+- ✅ Category breakdown with horizontal progress bars
+- ✅ Color-coded bars (red >70%, orange >40%, light orange <40%)
+- ✅ Removed all € currency displays
+
+**Results Page Enhancements**:
+- ✅ Added "What We'll Discuss in Your Call" section
+  - Shows top 3 opportunity areas based on assessment
+  - Specific discussion points for each category
+  - Builds trust by showing transparency about call content
+  - Explicitly states "This isn't a sales call"
+
+- ✅ Added persona-specific "Why LineaBlu?" footer
+  - 3 benefit cards tailored to each persona (CFO, GC, CEO, Operations)
+  - Quick stats: 78% expansion clients, 45 days to value, 40-60% cost reduction
+  - Office locations: Madrid • Amsterdam • Johannesburg • Cape Town
+  - Only direct sales messaging in entire survey
+
+- ✅ Reordered sections for better conversion flow:
+  1. Score display with circular progress
+  2. CTA section (Book Call + LinkedIn Share)
+  3. "What We'll Discuss" section (moved below CTA)
+  4. "Why LineaBlu?" persona-specific footer
+  5. Email form for detailed report
+
+**Navigation Enhancement**:
+- ✅ "Start Over" button now redirects to landing page (not welcome screen)
+- Provides cleaner user flow for retaking assessment
 
 ---
 
@@ -179,23 +219,16 @@ Required roles:
   lastName: string,
   companyName: string,
 
-  // Scoring (normalized to 0-100)
-  total_score: number,
+  // Scoring (percentage-based, normalized to 0-100)
+  total_score: number,              // Overall opportunity percentage
 
-  // Category scores (0-25 each, new opportunity-based names)
-  contract_score: number,           // contract_opportunity
-  risk_score: number,               // growth_enablement (reused field)
-  efficiency_score: number,         // cost_opportunity (reused field)
-  strategic_score: number,          // strategic_value
+  // Category scores (0-100 each, opportunity-based)
+  contract_score: number,           // contract_opportunity (% potential)
+  risk_score: number,               // growth_enablement (% potential - reused field)
+  efficiency_score: number,         // cost_opportunity (% potential - reused field)
+  strategic_score: number,          // strategic_value (% potential)
 
-  // Value potential (€ amounts)
-  value_potential_total: number,
-  value_potential_contract: number,
-  value_potential_growth: number,
-  value_potential_cost: number,
-  value_potential_strategic: number,
-
-  // Tier
+  // Tier (based on overall percentage)
   tier: 'maximized' | 'strong-foundation' | 'significant-opportunity' | 'transformational',
 
   // UTM tracking
@@ -211,10 +244,17 @@ Required roles:
 }
 ```
 
+**Score Interpretation**:
+- `total_score`: Overall opportunity percentage (0-100%)
+  - 0-30%: Maximized Value (low opportunity, already optimized)
+  - 30-50%: Strong Foundation, Growth Ready (moderate opportunity)
+  - 50-70%: Significant Opportunity (high opportunity)
+  - 70-100%: Transformational Potential (very high opportunity)
+
 **Note on Database Schema**:
 - Existing database columns (`contract_score`, `risk_score`, etc.) are reused
-- New columns added for value potential tracking
-- Database migration may be needed to add new value potential columns
+- Scores now represent percentage of opportunity (not risk levels)
+- Higher scores = more opportunity for improvement
 
 ---
 
@@ -385,11 +425,11 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://oyfikxdowpe
 
 ## 📋 NEXT STEPS / FUTURE WORK
 
-### Phase 3: Email & PDF Reports (Not Yet Implemented)
+### Email & PDF Reports (Not Yet Implemented)
 
-**Missing from Original Technical Handoff**:
+**Missing Functionality**:
 1. Email sending integration with SendGrid/similar
-2. PDF report generation
+2. PDF report generation with percentage-based results
 3. Email sequence automation
 4. Follow-up nurture campaigns
 
@@ -399,24 +439,28 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://oyfikxdowpe
 - Email sending endpoint exists but may need implementation
 - No PDF generation yet
 
-### Database Schema Updates (May Be Needed)
-
-**New columns to add**:
-```sql
-ALTER TABLE assessments ADD COLUMN IF NOT EXISTS value_potential_total INTEGER;
-ALTER TABLE assessments ADD COLUMN IF NOT EXISTS value_potential_contract INTEGER;
-ALTER TABLE assessments ADD COLUMN IF NOT EXISTS value_potential_growth INTEGER;
-ALTER TABLE assessments ADD COLUMN IF NOT EXISTS value_potential_cost INTEGER;
-ALTER TABLE assessments ADD COLUMN IF NOT EXISTS value_potential_strategic INTEGER;
-```
-
 ### Marketing Campaign Integration
 
 **Persona tracking enables**:
 - Persona-specific LinkedIn ads
-- Targeted follow-up messaging
+- Targeted follow-up messaging based on opportunity areas
 - ROI measurement per persona
 - Budget allocation optimization (per campaign-summary.md)
+
+**Call Discussion Topics**:
+- "What We'll Discuss" section provides specific talking points
+- Helps sales team prepare for insights calls
+- Top 3 opportunity areas ranked by assessment scores
+
+### Future Enhancements
+
+**Potential Additions**:
+1. A/B testing different CTAs
+2. Interactive demo/calculator on results page
+3. Social proof: client logos, testimonials
+4. Industry-specific benchmarking
+5. Multi-language support (Spanish, French for EMEA/Africa)
+6. LinkedIn pixel integration for retargeting
 
 ---
 
@@ -431,11 +475,16 @@ Before each deployment:
 - [ ] Verify Supabase client uses placeholders
 - [ ] Commit changes to git
 - [ ] Push to GitHub
-- [ ] Deploy via `gcloud run deploy`
+- [ ] Deploy via `gcloud run deploy` or GitHub Actions
 - [ ] Check deployment succeeds
 - [ ] Test live URL
 - [ ] Verify persona selection works
-- [ ] Verify results show € values
+- [ ] Verify results show percentage-based scores
+- [ ] Test circular progress ring renders correctly
+- [ ] Verify "What We'll Discuss" section shows correct topics
+- [ ] Test "Why LineaBlu?" footer shows persona-specific content
+- [ ] Verify "Start Over" button returns to landing page
+- [ ] Test all CTAs (Book Call, LinkedIn Share, Email form)
 
 ---
 
@@ -452,19 +501,69 @@ Before each deployment:
 ## 📝 SESSION SUMMARY
 
 **Started with**: Broken deployment, risk-based assessment, no personas
-**Ended with**: Live deployment, opportunity-based assessment, full persona selection
+**Current state**: Live deployment, percentage-based opportunity assessment, full persona selection, enhanced conversion flow
 
 **Key Achievements**:
 1. ✅ Fixed deployment blockers (Docker → buildpacks)
 2. ✅ Complete reframing per REFRAMING_BRIEF.md
 3. ✅ Persona selection per campaign strategy
-4. ✅ Value calculations showing € amounts
-5. ✅ All copy updated to opportunity language
+4. ✅ Percentage-based opportunity scoring (replaced € amounts)
+5. ✅ Circular progress ring with gradient design
+6. ✅ "What We'll Discuss" section for call preview
+7. ✅ Persona-specific "Why LineaBlu?" footer
+8. ✅ Optimized section ordering for conversion
+9. ✅ All copy updated to opportunity language
 
 **Deployment Status**: ✅ STABLE AND LIVE
 
-**Last Deployed**: January 14, 2026
-**Revision**: lineablu-legal-impact-score-00005-jm2
+**Last Major Update**: January 16, 2026
+**Recent Changes**:
+- Percentage-based scoring implementation
+- Visual redesign with circular progress
+- Results page enhancements (discussion topics, persona footer)
+- Section reordering (CTA before discussion details)
+- Start Over navigation improvement
+
+---
+
+## 🎨 VISUAL DESIGN SPECIFICATIONS
+
+### Circular Progress Ring
+```typescript
+// 192px diameter circle
+<svg className="transform -rotate-90 w-48 h-48">
+  <circle cx="96" cy="96" r="88" stroke="#E5E7EB" strokeWidth="16" fill="none" />
+  <circle
+    cx="96" cy="96" r="88"
+    stroke="url(#gradient)"
+    strokeWidth="16"
+    strokeDasharray={`${2 * Math.PI * 88}`}
+    strokeDashoffset={`${2 * Math.PI * 88 * (1 - score / 100)}`}
+  />
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#F97316" /> <!-- Orange -->
+      <stop offset="100%" stopColor="#1E3A8A" /> <!-- Blue -->
+    </linearGradient>
+  </defs>
+</svg>
+```
+
+### Color Palette
+- **Orange** (#F97316): Primary CTA, high opportunity indicators
+- **Blue** (#1E3A8A): Brand color, gradients
+- **Red** (#EF4444): >70% opportunity
+- **Orange** (#F97316): >40% opportunity
+- **Light Orange** (#FB923C): <40% opportunity
+- **Gray** (#E5E7EB): Background, borders
+
+### Section Layout Order (Results Page)
+1. **Header**: Logo + Start Over button
+2. **Score Display**: Circular progress + tier badge + category breakdown
+3. **CTA Section**: Book Call (orange) + LinkedIn Share (blue)
+4. **Discussion Preview**: "What We'll Discuss" with top 3 topics
+5. **Why LineaBlu**: Persona-specific benefits footer
+6. **Email Form**: Get detailed report
 
 ---
 
