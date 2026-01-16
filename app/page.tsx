@@ -53,30 +53,30 @@ export default function Home() {
             LineaBlu Legal Value Score™
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            How much value is your legal function leaving on the table?
+            How much value is waiting to be unlocked in your legal function?
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Most businesses are sitting on €200K-€500K in uncaptured legal value. Find out how much you could unlock in 5 minutes.
+            Most businesses are sitting on hidden opportunities in their contracts, operations, and strategic positioning. Take our 5-minute assessment. Get your Growth Opportunity Score.
           </p>
 
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-6 mb-8 rounded-r-lg max-w-2xl mx-auto">
             <p className="text-gray-700 text-lg font-medium">
-              💰 Answer 8 questions. Discover your value potential. See exactly how much opportunity exists in your legal function.
+              💎 Answer 8 questions. Get your personalized opportunity score. See exactly where your legal function could be creating more value.
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 mb-8">
             <div className="flex items-center text-gray-600">
               <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-              <span>Takes 3 minutes</span>
+              <span>Takes 5 minutes</span>
             </div>
             <div className="flex items-center text-gray-600">
               <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-              <span>Instant personalized report</span>
+              <span>Get your personalized opportunity score</span>
             </div>
             <div className="flex items-center text-gray-600">
               <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-              <span>Benchmarked against 100+ companies</span>
+              <span>No email required to see results</span>
             </div>
           </div>
         </div>
