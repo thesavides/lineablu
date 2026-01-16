@@ -538,6 +538,177 @@ export default function AssessmentTool() {
             </button>
           </div>
 
+          {/* Why LineaBlu Banner - Persona Specific */}
+          <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-sm p-8 mb-6 border border-blue-100">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                Why LineaBlu for {selectedPersona ? personas.find(p => p.id === selectedPersona)?.title?.split(' ').slice(-1)[0] + 's' : 'You'}?
+              </h3>
+              <p className="text-gray-600">
+                We're the legal operations partner that {selectedPersona === 'cfo' ? 'makes legal a P&L contributor, not just a cost center' :
+                selectedPersona === 'general-counsel' ? 'gives you capacity to be strategic, not just reactive' :
+                selectedPersona === 'ceo' ? 'makes legal your competitive advantage, not a bottleneck' :
+                selectedPersona === 'operations' ? 'turns legal into a velocity multiplier for deals' :
+                'helps you unlock hidden value in your legal function'}
+              </p>
+            </div>
+
+            {/* Persona-Specific Benefits */}
+            <div className="grid md:grid-cols-3 gap-6 mb-6">
+              {selectedPersona === 'cfo' && (
+                <>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">💰</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Cost Visibility</h4>
+                    <p className="text-sm text-gray-600">Track every euro of legal spend with real-time dashboards. No more invoice surprises.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">📊</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Budget Predictability</h4>
+                    <p className="text-sm text-gray-600">Fixed monthly fees. Predictable costs. No more outside counsel budget overruns.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">📈</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Value Capture</h4>
+                    <p className="text-sm text-gray-600">Find and capture contract value: rebates, escalations, renewal opportunities.</p>
+                  </div>
+                </>
+              )}
+              {selectedPersona === 'general-counsel' && (
+                <>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">⚡</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Embedded Capacity</h4>
+                    <p className="text-sm text-gray-600">Senior legal talent embedded in your team. Handle 3x volume without hiring.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🎯</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Strategic Focus</h4>
+                    <p className="text-sm text-gray-600">We handle tactical work. You focus on strategy, governance, and stakeholder impact.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🌍</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Global Coverage</h4>
+                    <p className="text-sm text-gray-600">4 offices, 20+ countries. Europe-Africa expansion expertise built in.</p>
+                  </div>
+                </>
+              )}
+              {selectedPersona === 'ceo' && (
+                <>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🚀</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Velocity</h4>
+                    <p className="text-sm text-gray-600">Close deals 40% faster. Legal becomes a competitive advantage, not a delay.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🌍</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Expansion Ready</h4>
+                    <p className="text-sm text-gray-600">Europe-Africa expertise. Legal infrastructure that scales with your growth.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">💎</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Risk Protection</h4>
+                    <p className="text-sm text-gray-600">Senior counsel oversight on every deal. Move fast without exposing the business.</p>
+                  </div>
+                </>
+              )}
+              {selectedPersona === 'operations' && (
+                <>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">⚡</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Speed</h4>
+                    <p className="text-sm text-gray-600">Same-day turnaround on contracts. Legal reviews that don't slow deals.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🔧</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Process Automation</h4>
+                    <p className="text-sm text-gray-600">Playbooks, templates, workflows. Reduce back-and-forth by 60%.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">📊</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Visibility</h4>
+                    <p className="text-sm text-gray-600">Live dashboards showing where every contract is in the pipeline.</p>
+                  </div>
+                </>
+              )}
+              {!selectedPersona || selectedPersona === 'general' && (
+                <>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">⚡</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Embedded Expertise</h4>
+                    <p className="text-sm text-gray-600">Senior legal counsel working as part of your team, not as external advisors.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🌍</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Global Reach</h4>
+                    <p className="text-sm text-gray-600">Europe-Africa expansion expertise across 20+ countries.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">💎</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Fixed Pricing</h4>
+                    <p className="text-sm text-gray-600">Predictable monthly fees. No hourly billing surprises.</p>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-3 gap-4 py-6 border-y border-gray-200 mb-6">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">78%</div>
+                <div className="text-xs text-gray-600">Clients expanding<br/>Europe ↔ Africa</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">45 days</div>
+                <div className="text-xs text-gray-600">Avg. time to<br/>first value</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">40-60%</div>
+                <div className="text-xs text-gray-600">Outside counsel<br/>cost reduction</div>
+              </div>
+            </div>
+
+            {/* Tagline */}
+            <div className="text-center">
+              <p className="text-gray-800 italic font-medium text-lg mb-2">
+                When you need us. How you need us.
+              </p>
+              <p className="text-sm text-gray-600">
+                Madrid • Amsterdam • Johannesburg • Cape Town
+              </p>
+            </div>
+          </div>
+
           {/* Email Form */}
           <div className="bg-white rounded-2xl shadow-sm p-8">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Get Your Detailed Report</h3>
