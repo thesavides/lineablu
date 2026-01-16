@@ -461,15 +461,61 @@ export default function AssessmentTool() {
             </div>
           </div>
 
+          {/* What We'll Discuss Section */}
+          <div className="bg-white rounded-2xl shadow-sm p-8 mb-6 border-2 border-blue-100">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <span className="text-2xl">💡</span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900">What We'll Discuss in Your Call</h3>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Based on your assessment, here are the specific topics we'll cover in your 20-minute insights call:
+            </p>
+            <div className="space-y-4">
+              {categoryBreakdown
+                .sort((a, b) => b.percentage - a.percentage)
+                .slice(0, 3)
+                .map((item, index) => {
+                  const discussionPoints: Record<string, string> = {
+                    "Contract Value Potential": "Identifying hidden value in your contracts: automatic renewals, price escalations, and rebate opportunities you're likely missing",
+                    "Growth Enablement": "How to structure legal support for your expansion plans without creating bottlenecks or budget surprises",
+                    "Efficiency Gains": "Practical ways to reduce outside counsel spend and accelerate deal velocity with embedded legal support"
+                  };
+
+                  return (
+                    <div key={index} className="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0">
+                      <div className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mt-1">
+                        {index + 1}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-lg">{item.icon}</span>
+                          <h4 className="font-semibold text-gray-900">{item.category}</h4>
+                          <span className="text-sm font-bold text-orange-600">({item.percentage}% opportunity)</span>
+                        </div>
+                        <p className="text-sm text-gray-600">
+                          {discussionPoints[item.category]}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="mt-6 bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg">
+              <p className="text-sm text-gray-700">
+                <strong>This isn't a sales call.</strong> We'll share specific insights from 100+ similar assessments and give you actionable next steps—whether you work with us or not.
+              </p>
+            </div>
+          </div>
+
           {/* CTA Section */}
           <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl shadow-lg p-8 mb-6 text-white">
             <h2 className="text-3xl font-bold text-center mb-4">
               Ready to unlock this growth potential?
             </h2>
             <p className="text-blue-100 text-center mb-8 leading-relaxed">
-              Based on your profile, we've identified significant opportunities to transform
-              your legal function into a revenue driver. Book a 20-minute insights call to
-              discuss specific outcomes.
+              Book your 20-minute insights call now. We'll send you a prep document beforehand so we can dive straight into your specific situation.
             </p>
 
             {/* Primary CTA */}
@@ -478,7 +524,7 @@ export default function AssessmentTool() {
               className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl mb-4 flex items-center justify-center gap-3 transition-colors"
             >
               <Calendar size={24} />
-              <span className="text-lg">Book Insights Call</span>
+              <span className="text-lg">Book Your Insights Call</span>
               <span>→</span>
             </button>
 
